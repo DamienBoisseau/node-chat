@@ -1,4 +1,4 @@
-var socket = io.connect('http://localhost:3000');
+var socket = io();
 
 // Insert message inside the chat container when received from the server
 socket.on('message', function(message) {
