@@ -9,7 +9,9 @@ io.on('connection', function(client) {
 
   client.on('join', function(username) {
     client.username = username;
+    
     console.log(username + ' has joined');
+    client.broadcast.emit('join', username + ' has joined');
   });
 
   client.on('message', function(username, message) {

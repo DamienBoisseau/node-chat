@@ -11,3 +11,8 @@ function htmlEntities(str) {
 function insertMessage(usr, msg) {
   $('#messages').append('<p><b>' + htmlEntities(usr) + '</b> : ' + htmlEntities(msg) + '</p>');
 }
+
+// Append notification to the chat container
+function insertNotification(txt) {
+  $('#messages').append('<p><i>' + htmlEntities(txt) + '</i>');
+}

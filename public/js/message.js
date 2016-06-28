@@ -5,6 +5,11 @@ socket.on('message', function(message) {
   insertMessage(message);
 });
 
+// Insert notification inside the chat container when a user joins
+socket.on('join', function(text) {
+  insertNotification(text);
+});
+
 $(function() {
 
   // Ask user's name
@@ -16,7 +21,7 @@ $(function() {
   socket.emit('join', username);
 
   // Insert join message inside the chat container
-  // @todo
+  insertNotification(username + ' has joined');
 
   $('#form').on('submit', function(event) {
     event.preventDefault();
