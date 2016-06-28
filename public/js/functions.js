@@ -8,6 +8,6 @@ function htmlEntities(str) {
 }
 
 // Append incoming messages to the chat container
-function insertMessage(msg) {
-  $('#messages').append('<p>' + htmlEntities(msg) + '</p>');
+function insertMessage(usr, msg) {
+  $('#messages').append('<p><b>' + htmlEntities(usr) + '</b> : ' + htmlEntities(msg) + '</p>');
 }

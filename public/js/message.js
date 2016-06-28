@@ -7,6 +7,17 @@ socket.on('message', function(message) {
 
 $(function() {
 
+  // Ask user's name
+  var username;
+  while(!username) {
+    username = window.prompt('Enter your name');
+  }
+  // Emit it to the server
+  socket.emit('join', username);
+
+  // Insert join message inside the chat container
+  // @todo
+
   $('#form').on('submit', function(event) {
     event.preventDefault();
 
@@ -15,13 +26,13 @@ $(function() {
     var message = input.val();
 
     if(message != '') {
-      socket.emit('message', message);
+      socket.emit('message', username, message);
 
       // Clear input value and give back the focus to it
       input.val('').focus();
 
       // Insert message inside the chat container
-      insertMessage(message);
+      insertMessage(username, message);
     }
   });
 

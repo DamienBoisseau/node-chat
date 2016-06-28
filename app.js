@@ -6,11 +6,15 @@ var io = require('socket.io')(server);
 app.use(express.static('public'));
 
 io.on('connection', function(client) {
-  console.log('Client connecté !');
 
-  client.on('message', function(data) {
-    console.log('Message reçu : \"' + data + '\"')
-    client.broadcast.emit('message', data);
+  client.on('join', function(username) {
+    client.username = username;
+    console.log(username + ' has joined');
+  });
+
+  client.on('message', function(username, message) {
+    console.log('Message reçu de ' + username + ' : \"' + message + '\"');
+    client.broadcast.emit('message', username + ' : ' + message);
   });
   
 });
