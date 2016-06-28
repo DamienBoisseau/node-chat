@@ -1,0 +1,56 @@
+/* Settings */
+$background: #eeeeee;
+$chat-box-background: #ffffff;
+$chat-header-background: #3d3d3d;
+$chat-header-border: #35ac19;
+$font-stack: 'Roboto', 'sans-serif';
+$font-normal: '400';
+$font-bold: '500';
+$text-color: #8a8a8a;
+
+/* General CSS */
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $font-stack;
+  background-color: $background;
+  color: $text-color;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: $font-bold;
+}
+
+#chat-box {
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  background-color: $chat-box-background;
+  border-radius: 5px;
+  color: #292929;
+  margin: 50px auto;
+  max-width: 350px;
+
+  h1 {
+    background-color: $chat-header-background;
+    border-bottom: 2px solid $chat-header-border;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.1);
+    color: #ffffff;
+    font-size: 1em;
+    margin: 0;
+    padding: 5px 0;
+    text-align: center;
+  }
+
+  #messages {
+    padding: 5px;
+  }
+
+  p {
+    margin: 5px 0;
+  }
+}
