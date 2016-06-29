@@ -14,6 +14,11 @@ io.on('connection', function(client) {
     client.broadcast.emit('join', username + ' has joined');
   });
 
+  client.on('disconnect', function() {
+    console.log(client.username + ' has left');
+    client.broadcast.emit('leave', client.username + ' has left');
+  });
+
   client.on('message', function(username, message) {
     console.log('Message reçu de ' + username + ' : \"' + message + '\"');
     client.broadcast.emit('message', username + ' : ' + message);

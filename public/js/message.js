@@ -10,6 +10,11 @@ socket.on('join', function(text) {
   insertNotification(text);
 });
 
+// Insert notification inside the chat container when a user leaves
+socket.on('leave', function(text) {
+  insertNotification(text);
+});
+
 $(function() {
 
   // Ask user's name
