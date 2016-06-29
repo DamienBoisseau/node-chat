@@ -19,9 +19,9 @@ io.on('connection', function(client) {
     client.broadcast.emit('leave', client.username + ' has left');
   });
 
-  client.on('message', function(username, message) {
-    console.log('Message reçu de ' + username + ' : \"' + message + '\"');
-    client.broadcast.emit('message', username + ' : ' + message);
+  client.on('message', function(data) {
+    console.log('Message reçu de ' + data.username + ' : \"' + data.message + '\"');
+    client.broadcast.emit('message', data);
   });
   
 });

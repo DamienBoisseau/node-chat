@@ -1,8 +1,8 @@
 var socket = io();
 
 // Insert message inside the chat container when received from the server
-socket.on('message', function(message) {
-  insertMessage(message);
+socket.on('message', function(data) {
+  insertMessage(data.username, data.message);
 });
 
 // Insert notification inside the chat container when a user joins
@@ -35,8 +35,13 @@ $(function() {
     var input = $('#message');
     var message = input.val();
 
+    var data = {
+      username: username,
+      message: message
+    }
+
     if(message != '') {
-      socket.emit('message', username, message);
+      socket.emit('message', data);
 
       // Clear input value and give back the focus to it
       input.val('').focus();
