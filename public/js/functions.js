@@ -9,10 +9,10 @@ function htmlEntities(str) {
 
 // Append incoming messages to the chat container
 function insertMessage(usr, msg) {
-  $('#messages').append('<p><b>' + htmlEntities(usr) + '</b> : ' + htmlEntities(msg) + '</p>');
+  $('#messages').append('<div class="message"><p><b>' + htmlEntities(usr) + '</b> : ' + htmlEntities(msg) + '</p></div>');
 }
 
 // Append notification to the chat container
 function insertNotification(txt) {
-  $('#messages').append('<p><i>' + htmlEntities(txt) + '</i>');
+  $('#messages').append('<div class="notification"><p><i>' + htmlEntities(txt) + '</i></div>');
 }
