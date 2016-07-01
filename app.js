@@ -1,10 +1,14 @@
+// Express stuff
 var express = require('express');
 var app = express();
+app.use(express.static('public'));
+app.get('/', function(req, res) {
+  res.sendFile(__dirname + '/index.html');
+});
+
+// Socket stuff
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
-
-app.use(express.static('public'));
-
 io.on('connection', function(client) {
 
   client.on('join', function(username) {
@@ -26,8 +30,5 @@ io.on('connection', function(client) {
   
 });
 
-app.get('/', function(req, res) {
-  res.sendFile(__dirname + '/index.html');
-});
-
+// Listen on port 3000
 server.listen(3000);
