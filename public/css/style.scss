@@ -3,6 +3,7 @@ $background: #ffffff;
 $chat-box-background: #ECEFF1;
 $chat-header-background: #3d3d3d;
 $chat-header-border: #35ac19;
+$max-height: 500px;
 $form-background: #ffffff;
 $font-stack: 'Roboto', 'sans-serif';
 $font-normal: '400';
@@ -65,6 +66,8 @@ h3 {
 
     #messages {
       padding: 5px;
+      height: $max-height;
+      overflow: auto;
 
       & > div {
         margin: 5px 0;
@@ -143,6 +146,8 @@ h3 {
       list-style-type: none;
       margin: 5px 0;
       padding-left: 25px;
+      height: $max-height;
+      overflow: auto;
 
       li {
         position: relative;

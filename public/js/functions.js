@@ -19,7 +19,17 @@ function insertMessage(usr, msg, isOwnMessage) {
     messageToDisplay = '<p><b>' + htmlEntities(usr) + '</b> : ' + htmlEntities(msg) + '</p>';
   }
 
+  // Detect if the user has scrolled to the bottom.
+  var willScroll = false;
+  if($('#messages').scrollTop() + $('#messages').innerHeight() >= $('#messages')[0].scrollHeight) {
+    var willScroll = true;
+  }
+
   $('#messages').append('<div class="message ' + messageClass + '">' + messageToDisplay + '</div>');
+
+  if(willScroll === true) {
+    $('#messages').scrollTop($('#messages')[0].scrollHeight);
+  }
 }
 
 // Append JOIN notification to the chat container and add user to the user list

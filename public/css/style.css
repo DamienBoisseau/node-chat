@@ -45,7 +45,9 @@ h3 {
     #chat-container #chat-box h1 {
       border-top-left-radius: 3px; }
     #chat-container #chat-box #messages {
-      padding: 5px; }
+      padding: 5px;
+      height: 500px;
+      overflow: auto; }
       #chat-container #chat-box #messages > div {
         margin: 5px 0; }
       #chat-container #chat-box #messages p {
@@ -92,7 +94,9 @@ h3 {
     #chat-container #users-box ul {
       list-style-type: none;
       margin: 5px 0;
-      padding-left: 25px; }
+      padding-left: 25px;
+      height: 500px;
+      overflow: auto; }
       #chat-container #users-box ul li {
         position: relative; }
         #chat-container #users-box ul li:before {
