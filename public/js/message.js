@@ -2,7 +2,7 @@ var socket = io();
 
 // Insert message inside the chat container when received from the server
 socket.on('message', function(data) {
-  insertMessage(data.username, data.message);
+  insertMessage(data.username, data.message, false);
 });
 
 // Insert notification inside the chat container when a user joins
@@ -47,7 +47,7 @@ $(function() {
       input.val('').focus();
 
       // Insert message inside the chat container
-      insertMessage(username, message);
+      insertMessage(username, message, true);
     }
   });
 

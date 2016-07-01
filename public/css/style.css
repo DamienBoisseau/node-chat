@@ -50,6 +50,10 @@ h3 {
     #chat-box #messages .message p {
       background-color: #ffffff;
       border-radius: 3px; }
+    #chat-box #messages .message.is-own-message {
+      text-align: right; }
+      #chat-box #messages .message.is-own-message p {
+        background-color: #cfd8dc; }
     #chat-box #messages .notification {
       position: relative;
       text-align: center; }
