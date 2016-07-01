@@ -10,6 +10,7 @@ app.get('/', function(req, res) {
 var messageStorageLimit = 100;
 var sentMessages = [];
 var connectedUsers = [];
+var nextUserId = 1;
 var storeMessage = function(data) {
   sentMessages.push({username: data.username,  message: data.message});
   if(sentMessages.length > messageStorageLimit) {
@@ -17,10 +18,16 @@ var storeMessage = function(data) {
   }
 }
 var storeUser = function(usr) {
-  connectedUsers.push(usr);
+  connectedUsers.push({userid: nextUserId, username: usr});
+  nextUserId++;
 }
-var removeUser = function(usr) {
-  connectedUsers.splice(connectedUsers.indexOf(usr));
+var removeUser = function(id) {
+
+  connectedUsers.map(function(element, index, array) {
+    if(element.userid == id) {
+      array.splice(index, 1);
+    }
+  });
 }
 
 // Socket stuff
@@ -30,23 +37,31 @@ io.on('connection', function(client) {
 
   client.on('join', function(username) {
     client.username = username;
+    client.userid = nextUserId;
     storeUser(username);
 
     // Print to the new user the last messages sent
     sentMessages.forEach(function(data){
       client.emit('message', data);
     });
+
+    // Show to the new user all the users already connected
+    connectedUsers.forEach(function(data){
+      if(data.userid != client.userid) {
+        client.emit('join', {userid: data.userid, username: data.username});
+      }
+    });
     
     console.log(username + ' has joined');
-    client.broadcast.emit('join', username + ' has joined');
-    client.emit('join', username + ' has joined');
+    client.broadcast.emit('join', {userid: client.userid, username: client.username});
+    client.emit('join', {userid: client.userid, username: client.username});
   });
 
   client.on('disconnect', function() {
-    removeUser(client.username);
+    removeUser(client.userid);
 
     console.log(client.username + ' has left');
-    client.broadcast.emit('leave', client.username + ' has left');
+    client.broadcast.emit('leave', {userid: client.userid, username: client.username});
   });
 
   client.on('message', function(data) {

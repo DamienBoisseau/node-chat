@@ -6,13 +6,13 @@ socket.on('message', function(data) {
 });
 
 // Insert notification inside the chat container when a user joins
-socket.on('join', function(text) {
-  insertNotification(text);
+socket.on('join', function(data) {
+  insertJoinNotification(data);
 });
 
 // Insert notification inside the chat container when a user leaves
-socket.on('leave', function(text) {
-  insertNotification(text);
+socket.on('leave', function(data) {
+  insertLeaveNotification(data);
 });
 
 $(function() {

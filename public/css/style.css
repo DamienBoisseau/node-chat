@@ -20,62 +20,94 @@ h2,
 h3 {
   font-weight: "500"; }
 
-#chat-box {
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
-  background-color: #ECEFF1;
-  border-radius: 3px;
+#chat-container {
   color: #292929;
   margin: 50px auto;
-  max-width: 350px;
-  font-size: 0.8em; }
-  #chat-box h1 {
+  max-width: 600px;
+  font-size: 0.8em;
+  position: relative;
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  background-color: #ECEFF1;
+  /* Self clearfix */ }
+  #chat-container h1 {
     background-color: #3d3d3d;
     border-bottom: 2px solid #35ac19;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.1);
     color: #ffffff;
     font-size: 1em;
     margin: 0;
     padding: 5px 0;
     text-align: center; }
-  #chat-box #messages {
-    padding: 5px; }
-    #chat-box #messages > div {
-      margin: 5px 0; }
-    #chat-box #messages p {
-      display: inline-block;
-      padding: 5px 10px;
-      margin: 0; }
-    #chat-box #messages .message p {
-      background-color: #ffffff;
-      border-radius: 3px; }
-    #chat-box #messages .message.is-own-message {
-      text-align: right; }
-      #chat-box #messages .message.is-own-message p {
-        background-color: #cfd8dc; }
-    #chat-box #messages .notification {
-      position: relative;
-      text-align: center; }
-      #chat-box #messages .notification p {
-        background-color: #ECEFF1;
+  #chat-container #chat-box {
+    border-radius: 3px;
+    float: left;
+    width: 60%; }
+    #chat-container #chat-box h1 {
+      border-top-left-radius: 3px; }
+    #chat-container #chat-box #messages {
+      padding: 5px; }
+      #chat-container #chat-box #messages > div {
+        margin: 5px 0; }
+      #chat-container #chat-box #messages p {
+        display: inline-block;
+        padding: 5px 10px;
+        margin: 0; }
+      #chat-container #chat-box #messages .message p {
+        background-color: #ffffff;
+        border-radius: 3px; }
+      #chat-container #chat-box #messages .message.is-own-message {
+        text-align: right; }
+        #chat-container #chat-box #messages .message.is-own-message p {
+          background-color: #cfd8dc; }
+      #chat-container #chat-box #messages .notification {
         position: relative;
-        z-index: 1; }
-      #chat-box #messages .notification:after {
-        border-top: 1px solid #8a8a8a;
-        content: '';
+        text-align: center; }
+        #chat-container #chat-box #messages .notification p {
+          background-color: #ECEFF1;
+          position: relative;
+          z-index: 1; }
+        #chat-container #chat-box #messages .notification:after {
+          border-top: 1px solid #8a8a8a;
+          content: '';
+          display: block;
+          position: absolute;
+          top: 13px;
+          width: 100%; }
+    #chat-container #chat-box #form {
+      background: #ffffff; }
+      #chat-container #chat-box #form input[type="text"] {
+        border: 0;
         display: block;
-        position: absolute;
-        top: 13px;
-        width: 100%; }
-  #chat-box #form {
-    background: #ffffff; }
-    #chat-box #form input[type="text"] {
-      border: 0;
-      display: block;
-      width: 100%;
-      padding: 10px; }
-    #chat-box #form input[type="submit"] {
-      display: none; }
+        width: 100%;
+        padding: 10px; }
+      #chat-container #chat-box #form input[type="submit"] {
+        display: none; }
+  #chat-container #users-box {
+    float: left;
+    width: 40%;
+    transition: transform 0.3s ease;
+    background-color: #ECEFF1; }
+    #chat-container #users-box h1 {
+      border-top-right-radius: 3px; }
+    #chat-container #users-box ul {
+      list-style-type: none;
+      margin: 5px 0;
+      padding-left: 25px; }
+      #chat-container #users-box ul li {
+        position: relative; }
+        #chat-container #users-box ul li:before {
+          content: '';
+          width: 5px;
+          height: 5px;
+          background-color: green;
+          border-radius: 50%;
+          display: block;
+          position: absolute;
+          left: -10px;
+          top: 6px; }
+  #chat-container:after {
+    content: '';
+    display: table;
+    clear: both; }
 
 /*# sourceMappingURL=style.css.map */
