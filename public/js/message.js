@@ -25,9 +25,6 @@ $(function() {
   // Emit it to the server
   socket.emit('join', username);
 
-  // Insert join message inside the chat container
-  insertNotification(username + ' has joined');
-
   $('#form').on('submit', function(event) {
     event.preventDefault();
 
