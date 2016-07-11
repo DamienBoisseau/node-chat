@@ -54,3 +54,13 @@ function addUser(data) {
 function removeUser(data) {
   $('#users').find('#user-' + data.userid).remove();
 }
+
+// Add "is typing" next to the user name when this user is... typing
+function setTyping(data) {
+  if(data.isTyping === true) {
+    $('#user-' + data.userid).append('<em> is typing...</em>');
+  }
+  else {
+    $('#user-' + data.userid + ' em').remove();
+  }
+}

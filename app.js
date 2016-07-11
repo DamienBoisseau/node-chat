@@ -70,6 +70,11 @@ io.on('connection', function(client) {
     console.log('Message reçu de ' + data.username + ' : \"' + data.message + '\"');
     client.broadcast.emit('message', data);
   });
+
+  client.on('typing', function(isTyping) {
+    console.log(client.username + ' is typing...');
+    client.broadcast.emit('typing', {userid: client.userid, isTyping: isTyping});
+  });
   
 });
 

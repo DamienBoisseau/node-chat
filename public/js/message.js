@@ -25,6 +25,11 @@ socket.on('removeUser', function(data) {
   removeUser(data);
 });
 
+// Notify user when someone is currently typing
+socket.on('typing', function(data) {
+  setTyping(data);
+});
+
 $(function() {
 
   // Ask user's name
@@ -55,6 +60,23 @@ $(function() {
 
       // Insert message inside the chat container
       insertMessage(username, message, true);
+    }
+  });
+
+  // Emit event when a user starts typing
+  var isTyping = false;
+
+  $('#message').on('keyup', function() {
+    // Check if the input is empty
+    if($(this).val() != '') {
+      if(isTyping === false) {
+        isTyping = true;
+        socket.emit('typing', isTyping);
+      }
+    }
+    else {
+      isTyping = false;
+      socket.emit('typing', isTyping);
     }
   });
 
