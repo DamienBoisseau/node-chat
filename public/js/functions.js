@@ -33,16 +33,24 @@ function insertMessage(usr, msg, isOwnMessage) {
   scrollDown();
 }
 
-// Append JOIN notification to the chat container and add user to the user list
+// Append JOIN notification to the chat container
 function insertJoinNotification(data) {
   $('#messages').append('<div class="notification"><p><i>' + htmlEntities(data.username) + ' has joined</i></div>');
-  $('#users').append('<li id="user-' + data.userid + '">' + data.username + '</li>');
   scrollDown();
 }
 
-// Append LEAVE notification to the chat container and remove user from the users list
+// Append LEAVE notification to the chat container
 function insertLeaveNotification(data) {
   $('#messages').append('<div class="notification"><p><i>' + htmlEntities(data.username) + ' has left</i></div>');
-  $('#users').find('#user-' + data.userid).remove();
   scrollDown();
+}
+
+// Add user to the user list
+function addUser(data) {
+  $('#users').append('<li id="user-' + data.userid + '">' + data.username + '</li>');
+}
+
+// Remove user from the users list
+function removeUser(data) {
+  $('#users').find('#user-' + data.userid).remove();
 }

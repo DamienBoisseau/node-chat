@@ -47,13 +47,12 @@ io.on('connection', function(client) {
 
     // Show to the new user all the users already connected
     connectedUsers.forEach(function(data){
-      if(data.userid != client.userid) {
-        client.emit('join', {userid: data.userid, username: data.username});
-      }
+      client.emit('addUser', {userid: data.userid, username: data.username});
     });
     
     console.log(username + ' has joined');
     client.broadcast.emit('join', {userid: client.userid, username: client.username});
+    client.broadcast.emit('addUser', {userid: client.userid, username: client.username});
     client.emit('join', {userid: client.userid, username: client.username});
   });
 
@@ -62,6 +61,7 @@ io.on('connection', function(client) {
 
     console.log(client.username + ' has left');
     client.broadcast.emit('leave', {userid: client.userid, username: client.username});
+    client.broadcast.emit('removeUser', {userid: client.userid, username: client.username});
   });
 
   client.on('message', function(data) {

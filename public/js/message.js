@@ -15,6 +15,16 @@ socket.on('leave', function(data) {
   insertLeaveNotification(data);
 });
 
+// Add a new user to the user list
+socket.on('addUser', function(data) {
+  addUser(data);
+});
+
+// Remove a leaving user from the user list
+socket.on('removeUser', function(data) {
+  removeUser(data);
+});
+
 $(function() {
 
   // Ask user's name
