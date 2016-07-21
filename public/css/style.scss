@@ -4,11 +4,21 @@ $chat-box-background: #ECEFF1;
 $chat-header-background: #3d3d3d;
 $chat-header-border: #35ac19;
 $max-height: 500px;
+$mobile: 767px;
+$tablet: 991px;
 $form-background: #ffffff;
 $font-stack: 'Roboto', 'sans-serif';
 $font-normal: '400';
 $font-bold: '500';
 $text-color: #8a8a8a;
+
+/* Responsive mixins */
+/* Source : http://www.iambacon.co.uk/blog/life-is-now-easier-create-media-query-mixins-with-rulesets-less-css */
+@mixin responsive($width) {
+  @media only screen and (max-width: $width) {
+    @content;
+  }
+}
 
 /* General CSS */
 * {
@@ -45,6 +55,12 @@ h3 {
   border-radius: 3px;
   background-color: $chat-box-background;
 
+  @include responsive($mobile) {
+    height: 100vh;
+    margin: 0;
+    max-width: 100%;
+  }
+
   h1 {
     background-color: $chat-header-background;
     border-bottom: 2px solid $chat-header-border;
@@ -60,6 +76,11 @@ h3 {
     float: left;
     width: 60%;
 
+    @include responsive($mobile) {
+      height: 100%;
+      padding-bottom: 5em;
+    }
+
     h1 {
       border-top-left-radius: 3px;
     }
@@ -68,6 +89,10 @@ h3 {
       padding: 5px;
       height: $max-height;
       overflow: auto;
+
+      @include responsive($mobile) {
+        height: 100%;
+      }
 
       & > div {
         margin: 5px 0;
@@ -138,6 +163,11 @@ h3 {
     transition: transform 0.3s ease;
     background-color: $chat-box-background;
 
+    @include responsive($mobile) {
+      height: 100%;
+      padding-bottom: 5em;
+    }
+
     h1 {
       border-top-right-radius: 3px;
     }
@@ -148,6 +178,10 @@ h3 {
       padding-left: 25px;
       height: $max-height;
       overflow: auto;
+
+      @include responsive($mobile) {
+        height: 100%;
+      }
 
       li {
         position: relative;

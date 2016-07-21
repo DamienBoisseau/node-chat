@@ -1,4 +1,6 @@
 /* Settings */
+/* Responsive mixins */
+/* Source : http://www.iambacon.co.uk/blog/life-is-now-easier-create-media-query-mixins-with-rulesets-less-css */
 /* General CSS */
 * {
   -webkit-box-sizing: border-box;
@@ -30,6 +32,11 @@ h3 {
   border-radius: 3px;
   background-color: #ECEFF1;
   /* Self clearfix */ }
+  @media only screen and (max-width: 767px) {
+    #chat-container {
+      height: 100vh;
+      margin: 0;
+      max-width: 100%; } }
   #chat-container h1 {
     background-color: #3d3d3d;
     border-bottom: 2px solid #35ac19;
@@ -42,12 +49,19 @@ h3 {
     border-radius: 3px;
     float: left;
     width: 60%; }
+    @media only screen and (max-width: 767px) {
+      #chat-container #chat-box {
+        height: 100%;
+        padding-bottom: 5em; } }
     #chat-container #chat-box h1 {
       border-top-left-radius: 3px; }
     #chat-container #chat-box #messages {
       padding: 5px;
       height: 500px;
       overflow: auto; }
+      @media only screen and (max-width: 767px) {
+        #chat-container #chat-box #messages {
+          height: 100%; } }
       #chat-container #chat-box #messages > div {
         margin: 5px 0; }
       #chat-container #chat-box #messages p {
@@ -89,6 +103,10 @@ h3 {
     width: 40%;
     transition: transform 0.3s ease;
     background-color: #ECEFF1; }
+    @media only screen and (max-width: 767px) {
+      #chat-container #users-box {
+        height: 100%;
+        padding-bottom: 5em; } }
     #chat-container #users-box h1 {
       border-top-right-radius: 3px; }
     #chat-container #users-box ul {
@@ -97,6 +115,9 @@ h3 {
       padding-left: 25px;
       height: 500px;
       overflow: auto; }
+      @media only screen and (max-width: 767px) {
+        #chat-container #users-box ul {
+          height: 100%; } }
       #chat-container #users-box ul li {
         position: relative; }
         #chat-container #users-box ul li:before {
