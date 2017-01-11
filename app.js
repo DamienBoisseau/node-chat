@@ -6,16 +6,19 @@ app.get('/', function(req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
+// Redis client
+var redis = require('redis');
+var redisClient = redis.createClient();
+
 // Users and messages storage
 var messageStorageLimit = 100;
-var sentMessages = [];
 var connectedUsers = [];
 var nextUserId = 1;
 var storeMessage = function(data) {
-  sentMessages.push({username: data.username,  message: data.message});
-  if(sentMessages.length > messageStorageLimit) {
-    sentMessages.shift();
-  }
+  var message = JSON.stringify({username: data.username, message: data.message});
+  redisClient.lpush('messages', message, function(err, res) {
+    redisClient.ltrim('messages', 0, messageStorageLimit-1); 
+  });
 }
 var storeUser = function(usr) {
   connectedUsers.push({userid: nextUserId, username: usr});
@@ -41,9 +44,14 @@ io.on('connection', function(client) {
     storeUser(username);
 
     // Print to the new user the last messages sent
-    sentMessages.forEach(function(data){
-      client.emit('message', data);
-    });
+    redisClient.lrange('messages', 0, -1, function(err, messages) {
+      messages = messages.reverse();
+      
+      messages.forEach(function(message){
+        data = JSON.parse(message);
+        client.emit('message', data);
+      });
+    })
 
     // Show to the new user all the users already connected
     connectedUsers.forEach(function(data){
